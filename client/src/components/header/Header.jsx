@@ -3,21 +3,21 @@ export default function Header() {
         <header>
             {/* Navigation */}
             <h1>
-                <a className="home" href="#">
-                    GamesPlay
+                <a className="home" href="/">
+                    Stadiums
                 </a>
             </h1>
             <nav>
-                <a href="#">All games</a>
+                <a href="/stadiums">All Stadiums</a>
                 {/* Logged-in users */}
                 <div id="user">
-                    <a href="#">Create Game</a>
-                    <a href="#">Logout</a>
+                    <a href="/stadiums/create">Add Stadium</a>
+                    <a href="/logout">Logout</a>
                 </div>
                 {/* Guest users */}
                 <div id="guest">
-                    <a href="#">Login</a>
-                    <a href="#">Register</a>
+                    <a href="/login">Login</a>
+                    <a href="/register">Register</a>
                 </div>
             </nav>
         </header>

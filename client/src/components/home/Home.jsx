@@ -3,11 +3,11 @@ export default function Home() {
         <section id="welcome-world">
             <div className="welcome-message">
                 <h2>Better the stadium</h2>
-                <h3>Better the Team</h3>
+                <h3>Better the Emotion</h3>
             </div>
             <img src="./images/homePic.jpeg" alt="hero" />
             <div id="home-page">
-                <h1>Latest Games</h1>
+                <h1>Latest Stadiums</h1>
                 {/* Display div: with information about every game (if any) */}
                 <div className="game">
                     <div className="image-wrap">
