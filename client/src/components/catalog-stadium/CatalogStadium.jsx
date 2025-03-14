@@ -1,7 +1,7 @@
 export default function CatalogStadium(params) {
     return (
         <section id="catalog-page">
-            <h1>All Games</h1>
+            <h1>All Stadiums</h1>
             {/* Display div: with information about every game (if any) */}
             <div className="allGames">
                 <div className="allGames-info">
@@ -34,7 +34,7 @@ export default function CatalogStadium(params) {
                 </div>
             </div>
             {/* Display paragraph: If there is no games */}
-            <h3 className="no-articles">No articles yet</h3>
+            <h3 className="no-articles">No stadiums yet</h3>
         </section>
     )
 }
