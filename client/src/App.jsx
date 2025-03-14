@@ -5,7 +5,9 @@ function App() {
 
   return (
     <>
-      <h1>Stadiums</h1>
+      <div className="box">
+        
+      </div>
     </>
   )
 }
