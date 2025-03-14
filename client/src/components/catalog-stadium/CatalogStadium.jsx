@@ -1,4 +1,4 @@
-export default function CatalogStadium(params) {
+export default function CatalogStadium() {
     return (
         <section id="catalog-page">
             <h1>All Stadiums</h1>
