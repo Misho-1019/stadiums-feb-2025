@@ -1,7 +1,19 @@
+import { useNavigate } from "react-router"
+import stadiumService from "../../services/stadiumService";
+
 export default function CreateStadium() {
+    const navigate = useNavigate();
+
+    const formAction = async (formData) => {
+        const stadiumData = Object.fromEntries(formData)
+
+        await stadiumService.create(stadiumData)
+
+        navigate('/stadiums')
+    }
     return (
         <section id="create-page" className="auth">
-            <form id="create">
+            <form id="create" action={formAction}>
                 <div className="container">
                     <h1>Create Stadium</h1>
                     <label htmlFor="leg-title">Legendary Name:</label>
