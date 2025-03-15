@@ -6,6 +6,7 @@ import Login from './components/login/Login'
 import Register from './components/register/Register'
 import CatalogStadium from './components/catalog-stadium/CatalogStadium'
 import CreateStadium from './components/create-stadium/CreateStadium'
+import DetailsStadium from './components/details-stadium/DetailsStadium'
 import './App.css'
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/stadiums" element={<CatalogStadium />} />
+                        <Route path="/stadiums/:stadiumId/details" element={<DetailsStadium />} />
                         <Route path="/stadiums/create" element={<CreateStadium />} />
                     </Routes>
                 </main>

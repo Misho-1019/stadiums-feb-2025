@@ -10,6 +10,9 @@ export default {
 
         return result;
     },
+    getOne(stadiumId) {
+        return request.get(`${baseUrl}/${stadiumId}`)
+    },
     create(stadiumData) {
         return request.post(baseUrl, stadiumData)    
     }
