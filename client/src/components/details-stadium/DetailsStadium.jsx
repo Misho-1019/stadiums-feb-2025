@@ -53,7 +53,7 @@ export default function DetailsStadium({
             </div>
             {/* Bonus */}
             {/* Add Comment ( Only for logged-in users, which is not creators of the current game ) */}
-            <CreateComment email={email} />
+            <CreateComment email={email} stadiumId={stadiumId} />
         </section>
     )
 }
