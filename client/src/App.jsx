@@ -8,6 +8,7 @@ import CatalogStadium from './components/catalog-stadium/CatalogStadium'
 import CreateStadium from './components/create-stadium/CreateStadium'
 import DetailsStadium from './components/details-stadium/DetailsStadium'
 import './App.css'
+import EditStadium from './components/edit-stadium/EditStadium'
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
                         <Route path="/register" element={<Register />} />
                         <Route path="/stadiums" element={<CatalogStadium />} />
                         <Route path="/stadiums/:stadiumId/details" element={<DetailsStadium />} />
+                        <Route path="/stadiums/:stadiumId/edit" element={<EditStadium />} />
                         <Route path="/stadiums/create" element={<CreateStadium />} />
                     </Routes>
                 </main>

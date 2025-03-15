@@ -16,7 +16,7 @@ export default function DetailsStadium() {
         const hasConfirm = confirm(`Are you sure you want to delete ${stadium.name} stadium?`)
 
         if (!hasConfirm) return;
-        
+
         await stadiumService.delete(stadiumId)
 
         navigate('/stadiums')
@@ -52,7 +52,7 @@ export default function DetailsStadium() {
                 </div>
                 {/* Edit/Delete buttons ( Only for creator of this game ) */}
                 <div className="buttons">
-                    <Link to="#" className="button">
+                    <Link to={`/stadiums/${stadiumId}/edit`} className="button">
                         Edit
                     </Link>
                     <button onClick={stadiumDeleteClickHandler} className="button">
