@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router"
 import stadiumService from "../../services/stadiumService";
+import CreateComment from "../create-comment/CreateComment";
+import ShowComment from "../show-comment/ShowComment";
 
 export default function DetailsStadium() {
     const [stadium, setStadium] = useState({})
@@ -36,20 +38,7 @@ export default function DetailsStadium() {
                     {stadium.summary}
                 </p>
                 {/* Bonus ( for Guests and Users ) */}
-                <div className="details-comments">
-                    <h2>Comments:</h2>
-                    <ul>
-                        {/* list all comments for current game (If any) */}
-                        <li className="comment">
-                            <p>Content: I rate this one quite highly.</p>
-                        </li>
-                        <li className="comment">
-                            <p>Content: The best game.</p>
-                        </li>
-                    </ul>
-                    {/* Display paragraph: If there are no games in the database */}
-                    <p className="no-comment">No comments.</p>
-                </div>
+                <ShowComment />
                 {/* Edit/Delete buttons ( Only for creator of this game ) */}
                 <div className="buttons">
                     <Link to={`/stadiums/${stadiumId}/edit`} className="button">
@@ -62,13 +51,7 @@ export default function DetailsStadium() {
             </div>
             {/* Bonus */}
             {/* Add Comment ( Only for logged-in users, which is not creators of the current game ) */}
-            <article className="create-comment">
-                <label>Add new comment:</label>
-                <form className="form">
-                    <textarea name="comment" placeholder="Comment......" defaultValue={""} />
-                    <input className="btn submit" type="submit" defaultValue="Add Comment" />
-                </form>
-            </article>
+            <CreateComment />
         </section>
     )
 }
