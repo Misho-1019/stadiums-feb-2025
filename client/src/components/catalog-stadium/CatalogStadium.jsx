@@ -1,4 +1,13 @@
+import { useEffect, useState } from "react"
+import stadiumService from "../../services/stadiumService"
+
 export default function CatalogStadium() {
+    const [stadiums, setStadiums] = useState([])
+    useEffect(() => {
+        stadiumService.getAll()
+           .then(setStadiums)
+    }, [])
+    
     return (
         <section id="catalog-page">
             <h1>All Stadiums</h1>
