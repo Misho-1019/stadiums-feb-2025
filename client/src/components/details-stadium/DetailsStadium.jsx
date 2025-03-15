@@ -4,7 +4,9 @@ import stadiumService from "../../services/stadiumService";
 import CreateComment from "../create-comment/CreateComment";
 import ShowComment from "../show-comment/ShowComment";
 
-export default function DetailsStadium() {
+export default function DetailsStadium({
+    email,
+}) {
     const [stadium, setStadium] = useState({})
     const { stadiumId } = useParams();
     const navigate = useNavigate();
@@ -51,7 +53,7 @@ export default function DetailsStadium() {
             </div>
             {/* Bonus */}
             {/* Add Comment ( Only for logged-in users, which is not creators of the current game ) */}
-            <CreateComment />
+            <CreateComment email={email} />
         </section>
     )
 }

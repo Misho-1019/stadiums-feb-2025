@@ -29,7 +29,7 @@ function App() {
                         <Route path="/login" element={<Login onLogin={userLoginHandler} />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/stadiums" element={<CatalogStadium />} />
-                        <Route path="/stadiums/:stadiumId/details" element={<DetailsStadium />} />
+                        <Route path="/stadiums/:stadiumId/details" element={<DetailsStadium email={email} />} />
                         <Route path="/stadiums/:stadiumId/edit" element={<EditStadium />} />
                         <Route path="/stadiums/create" element={<CreateStadium />} />
                     </Routes>
