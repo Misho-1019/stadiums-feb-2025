@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Route, Routes } from 'react-router'
 
 import Header from './components/header/Header'
@@ -7,10 +8,15 @@ import Register from './components/register/Register'
 import CatalogStadium from './components/catalog-stadium/CatalogStadium'
 import CreateStadium from './components/create-stadium/CreateStadium'
 import DetailsStadium from './components/details-stadium/DetailsStadium'
-import './App.css'
 import EditStadium from './components/edit-stadium/EditStadium'
+import './App.css'
 
 function App() {
+    const [email, setEmail] = useState('')
+
+    const userLoginHandler = (email) => {
+        setEmail(email)
+    }
 
     return (
         <>
@@ -20,7 +26,7 @@ function App() {
                 <main id="main-content">
                     <Routes>
                         <Route path="/" element={<Home />} />
-                        <Route path="/login" element={<Login />} />
+                        <Route path="/login" element={<Login onLogin={userLoginHandler} />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/stadiums" element={<CatalogStadium />} />
                         <Route path="/stadiums/:stadiumId/details" element={<DetailsStadium />} />
