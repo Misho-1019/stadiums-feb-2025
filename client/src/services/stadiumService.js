@@ -16,6 +16,9 @@ export default {
     create(stadiumData) {
         return request.post(baseUrl, stadiumData)    
     },
+    edit(stadiumId, stadiumData) {
+        return request.put(`${baseUrl}/${stadiumId}`, { ...stadiumData, _id: stadiumId })
+    },
     delete(stadiumId) {
         return request.delete(`${baseUrl}/${stadiumId}`)
     }

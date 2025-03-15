@@ -1,18 +1,28 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router"
+import { useNavigate, useParams } from "react-router"
 import stadiumService from "../../services/stadiumService";
 
 export default function EditStadium() {
     const [stadium, setStadium] = useState({})
     const { stadiumId } = useParams();
+    const navigate = useNavigate()
 
     useEffect(() => {
         stadiumService.getOne(stadiumId)
             .then(setStadium)
     }, [stadiumId])
+
+    const formAction = async (formData) => {
+        const stadiumData = Object.fromEntries(formData);
+
+        await stadiumService.edit(stadiumId, stadiumData)
+
+        navigate(`/stadiums/${stadiumId}/details`)
+    }
+
     return (
         <section id="edit-page" className="auth">
-            <form id="edit">
+            <form id="edit" action={formAction}>
                 <div className="container">
                     <h1>Edit Stadium</h1>
                     <label htmlFor="leg-title">Legendary Name:</label>
