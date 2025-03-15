@@ -3,17 +3,22 @@ import { Link, useNavigate, useParams } from "react-router"
 import stadiumService from "../../services/stadiumService";
 import CreateComment from "../create-comment/CreateComment";
 import ShowComment from "../show-comment/ShowComment";
+import commentService from "../../services/commentService";
 
 export default function DetailsStadium({
     email,
 }) {
     const [stadium, setStadium] = useState({})
+    const [comments, setComments] = useState([])
     const { stadiumId } = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {
         stadiumService.getOne(stadiumId)
             .then(setStadium)
+
+        commentService.getAll(stadiumId)
+            .then(setComments)    
     }, [stadiumId])
 
     const stadiumDeleteClickHandler = async () => {
@@ -24,6 +29,10 @@ export default function DetailsStadium({
         await stadiumService.delete(stadiumId)
 
         navigate('/stadiums')
+    }
+
+    const commentCreateHandler = (newComment) => {
+        setComments(state => [...state, newComment])
     }
 
     return (
@@ -40,7 +49,7 @@ export default function DetailsStadium({
                     {stadium.summary}
                 </p>
                 {/* Bonus ( for Guests and Users ) */}
-                <ShowComment />
+                <ShowComment comments={comments} />
                 {/* Edit/Delete buttons ( Only for creator of this game ) */}
                 <div className="buttons">
                     <Link to={`/stadiums/${stadiumId}/edit`} className="button">
@@ -53,7 +62,7 @@ export default function DetailsStadium({
             </div>
             {/* Bonus */}
             {/* Add Comment ( Only for logged-in users, which is not creators of the current game ) */}
-            <CreateComment email={email} stadiumId={stadiumId} />
+            <CreateComment email={email} stadiumId={stadiumId} onCreate={commentCreateHandler} />
         </section>
     )
 }
