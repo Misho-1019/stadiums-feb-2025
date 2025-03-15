@@ -15,5 +15,8 @@ export default {
     },
     create(stadiumData) {
         return request.post(baseUrl, stadiumData)    
+    },
+    delete(stadiumId) {
+        return request.delete(`${baseUrl}/${stadiumId}`)
     }
 }

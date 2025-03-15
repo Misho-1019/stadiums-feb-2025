@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 export default function ItemCatalogStadium({
     _id,
     name,
@@ -10,9 +12,9 @@ export default function ItemCatalogStadium({
                 <img src={imageUrl} />
                 <h6>{area}</h6>
                 <h2>{name}</h2>
-                <a href={`/stadiums/${_id}/details`} className="details-button">
+                <Link to={`/stadiums/${_id}/details`} className="details-button">
                     Details
-                </a>
+                </Link>
             </div>
         </div>
     )
