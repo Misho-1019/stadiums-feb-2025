@@ -1,12 +1,14 @@
-import { useActionState } from "react";
+import { useActionState, useContext } from "react";
 import { Link, useNavigate } from "react-router"
 import { useLogin } from "../../api/authApi";
+import { UserContext } from "../../context/userContext";
 
 export default function Login({
     onLogin,
 }) {
 
     const navigation = useNavigate();
+    const { userLoginHandler } = useContext(UserContext)
 
     const { login } = useLogin()
 
@@ -15,7 +17,7 @@ export default function Login({
 
         const authData = await login(values.email, values.password)
 
-        onLogin(authData)
+        userLoginHandler(authData)
 
         navigation('/stadiums')
 

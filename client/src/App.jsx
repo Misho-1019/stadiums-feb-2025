@@ -10,6 +10,7 @@ import CreateStadium from './components/create-stadium/CreateStadium'
 import DetailsStadium from './components/details-stadium/DetailsStadium'
 import EditStadium from './components/edit-stadium/EditStadium'
 import './App.css'
+import { UserContext } from './context/userContext'
 
 function App() {
     const [authData, setAuthData] = useState({})
@@ -20,21 +21,23 @@ function App() {
 
     return (
         <>
-            <div className="box">
-                <Header />
+            <UserContext.Provider value={{...authData, userLoginHandler}}>
+                <div className="box">
+                    <Header />
 
-                <main id="main-content">
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/login" element={<Login onLogin={userLoginHandler} />} />
-                        <Route path="/register" element={<Register />} />
-                        <Route path="/stadiums" element={<CatalogStadium />} />
-                        <Route path="/stadiums/:stadiumId/details" element={<DetailsStadium email={authData.email} />} />
-                        <Route path="/stadiums/:stadiumId/edit" element={<EditStadium />} />
-                        <Route path="/stadiums/create" element={<CreateStadium />} />
-                    </Routes>
-                </main>
-            </div>
+                    <main id="main-content">
+                        <Routes>
+                            <Route path="/" element={<Home />} />
+                            <Route path="/login" element={<Login onLogin={userLoginHandler} />} />
+                            <Route path="/register" element={<Register />} />
+                            <Route path="/stadiums" element={<CatalogStadium />} />
+                            <Route path="/stadiums/:stadiumId/details" element={<DetailsStadium email={authData.email} />} />
+                            <Route path="/stadiums/:stadiumId/edit" element={<EditStadium />} />
+                            <Route path="/stadiums/create" element={<CreateStadium />} />
+                        </Routes>
+                    </main>
+                </div>
+            </UserContext.Provider>
         </>
     )
 }

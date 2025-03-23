@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router"
 import stadiumService from "../../services/stadiumService";
 import CreateComment from "../create-comment/CreateComment";
 import ShowComment from "../show-comment/ShowComment";
 import commentService from "../../services/commentService";
+import { UserContext } from "../../context/userContext";
 
-export default function DetailsStadium({
-    email,
-}) {
+export default function DetailsStadium() {
     const [stadium, setStadium] = useState({})
     const [comments, setComments] = useState([])
+    const {email} = useContext(UserContext)
     const { stadiumId } = useParams();
     const navigate = useNavigate();
 
