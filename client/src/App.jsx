@@ -11,6 +11,7 @@ import DetailsStadium from './components/details-stadium/DetailsStadium'
 import EditStadium from './components/edit-stadium/EditStadium'
 import './App.css'
 import { UserContext } from './context/userContext'
+import Logout from './components/logout/Logout'
 
 function App() {
     const [authData, setAuthData] = useState({})
@@ -30,6 +31,7 @@ function App() {
                             <Route path="/" element={<Home />} />
                             <Route path="/login" element={<Login onLogin={userLoginHandler} />} />
                             <Route path="/register" element={<Register />} />
+                            <Route path="/logout" element={<Logout />} />
                             <Route path="/stadiums" element={<CatalogStadium />} />
                             <Route path="/stadiums/:stadiumId/details" element={<DetailsStadium email={authData.email} />} />
                             <Route path="/stadiums/:stadiumId/edit" element={<EditStadium />} />
