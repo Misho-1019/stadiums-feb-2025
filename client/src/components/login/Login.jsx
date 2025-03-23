@@ -20,8 +20,6 @@ export default function Login({
         userLoginHandler(authData)
 
         navigation('/stadiums')
-
-        return values;
     }
 
     const [_, loginAction, isPending] = useActionState(loginHandler, { email: '', password: '' })

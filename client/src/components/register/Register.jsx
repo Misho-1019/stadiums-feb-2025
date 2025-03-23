@@ -27,7 +27,7 @@ export default function Register() {
     }
     return (
         <section id="register-page" className="content auth">
-            <form id="register">
+            <form id="register" action={registerHandler}>
                 <div className="container">
                     <div className="brand-logo" />
                     <h1>Register</h1>
