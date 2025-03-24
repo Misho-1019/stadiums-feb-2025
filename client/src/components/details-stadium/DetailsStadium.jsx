@@ -8,7 +8,7 @@ import useAuth from "../../hooks/useAuth";
 
 export default function DetailsStadium() {
     const [comments, setComments] = useState([])
-    const { email } = useAuth()
+    const { email, _id: userId } = useAuth()
     const { stadiumId } = useParams();
     const navigate = useNavigate();
     const { stadium } = useStadium(stadiumId)
@@ -17,7 +17,7 @@ export default function DetailsStadium() {
 
     useEffect(() => {
         commentService.getAll(stadiumId)
-            .then(setComments)    
+            .then(setComments)
     }, [stadiumId])
 
     const stadiumDeleteClickHandler = async () => {
@@ -33,6 +33,8 @@ export default function DetailsStadium() {
     const commentCreateHandler = (newComment) => {
         setComments(state => [...state, newComment])
     }
+
+    const isOwner = userId === stadium._ownerId
 
     return (
         <section id="game-details">
@@ -50,14 +52,17 @@ export default function DetailsStadium() {
                 {/* Bonus ( for Guests and Users ) */}
                 <ShowComment comments={comments} />
                 {/* Edit/Delete buttons ( Only for creator of this game ) */}
-                <div className="buttons">
-                    <Link to={`/stadiums/${stadiumId}/edit`} className="button">
-                        Edit
-                    </Link>
-                    <button onClick={stadiumDeleteClickHandler} className="button">
-                        Delete
-                    </button>
-                </div>
+                {isOwner && (
+                    <div className="buttons">
+                        <Link to={`/stadiums/${stadiumId}/edit`} className="button">
+                            Edit
+                        </Link>
+                        <button onClick={stadiumDeleteClickHandler} className="button">
+                            Delete
+                        </button>
+                    </div>
+                )}
+
             </div>
             {/* Bonus */}
             {/* Add Comment ( Only for logged-in users, which is not creators of the current game ) */}
