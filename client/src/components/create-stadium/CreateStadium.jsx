@@ -1,13 +1,14 @@
 import { useNavigate } from "react-router"
-import stadiumService from "../../services/stadiumService";
+import { useCreateStadium } from "../../api/stadiumApi";
 
 export default function CreateStadium() {
     const navigate = useNavigate();
+    const { create: createStadium } = useCreateStadium()
 
     const formAction = async (formData) => {
         const stadiumData = Object.fromEntries(formData)
 
-        await stadiumService.create(stadiumData)
+        await createStadium(stadiumData)
 
         navigate('/stadiums')
     }
