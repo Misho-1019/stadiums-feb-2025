@@ -1,13 +1,9 @@
-import { useEffect, useState } from "react"
-import stadiumService from "../../services/stadiumService"
 import ItemCatalogStadium from "./item-catalog-stadium/ItemCatalogStadium"
+import { useStadiums } from "../../api/stadiumApi"
 
 export default function CatalogStadium() {
-    const [stadiums, setStadiums] = useState([])
-    useEffect(() => {
-        stadiumService.getAll()
-            .then(setStadiums)
-    }, [])
+    
+    const { stadiums } = useStadiums()
 
     return (
         <section id="catalog-page">

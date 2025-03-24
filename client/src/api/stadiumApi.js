@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/userContext";
 import request from "../utils/request";
 
@@ -23,6 +23,19 @@ export default {
     },
     delete(stadiumId) {
         return request.delete(`${baseUrl}/${stadiumId}`)
+    }
+}
+
+export const useStadiums = () => {
+    const [stadiums, setStadiums] = useState([])
+
+    useEffect(() => {
+        request.get(baseUrl)
+            .then(setStadiums)
+    }, [])
+
+    return {
+        stadiums,
     }
 }
 
