@@ -17,6 +17,24 @@ export const useStadiums = () => {
     }
 }
 
+export const useLatestStadiums = () => {
+    const [latestStadiums, setLatestStadiums] = useState([])
+
+    useEffect(() => {
+        const searchParams = new URLSearchParams({
+            sortBy: '_createdOn desc',
+            pageSize: 3, 
+        })
+
+        request.get(`${baseUrl}?${searchParams.toString()}`)
+            .then(setLatestStadiums)
+    }, [])
+
+    return {
+        latestStadiums,
+    }
+}
+
 export const useStadium = (gameId) => {
     const [stadium, setStadium] = useState({})
 
