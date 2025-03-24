@@ -24,6 +24,7 @@ export const useLatestStadiums = () => {
         const searchParams = new URLSearchParams({
             sortBy: '_createdOn desc',
             pageSize: 3, 
+            select: '_id,imageUrl,name'
         })
 
         request.get(`${baseUrl}?${searchParams.toString()}`)
