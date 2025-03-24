@@ -5,18 +5,16 @@ import CreateComment from "../create-comment/CreateComment";
 import ShowComment from "../show-comment/ShowComment";
 import commentService from "../../services/commentService";
 import { UserContext } from "../../context/userContext";
+import { useStadium } from "../../api/stadiumApi";
 
 export default function DetailsStadium() {
-    const [stadium, setStadium] = useState({})
     const [comments, setComments] = useState([])
     const {email} = useContext(UserContext)
     const { stadiumId } = useParams();
     const navigate = useNavigate();
+    const { stadium } = useStadium(stadiumId)
 
     useEffect(() => {
-        stadiumService.getOne(stadiumId)
-            .then(setStadium)
-
         commentService.getAll(stadiumId)
             .then(setComments)    
     }, [stadiumId])

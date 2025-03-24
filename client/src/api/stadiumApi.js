@@ -39,6 +39,19 @@ export const useStadiums = () => {
     }
 }
 
+export const useStadium = (gameId) => {
+    const [stadium, setStadium] = useState({})
+
+    useEffect(() => {
+        request.get(`${baseUrl}/${gameId}`)
+            .then(setStadium)
+    }, [gameId])
+
+    return {
+        stadium,
+    }
+}
+
 export const useCreateStadium = () => {
     const { accessToken } = useContext(UserContext)
 
