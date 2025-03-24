@@ -1,18 +1,19 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router"
-import stadiumService from "../../services/stadiumService";
 import CreateComment from "../create-comment/CreateComment";
 import ShowComment from "../show-comment/ShowComment";
 import commentService from "../../services/commentService";
-import { UserContext } from "../../context/userContext";
-import { useStadium } from "../../api/stadiumApi";
+import { useDeleteStadium, useStadium } from "../../api/stadiumApi";
+import useAuth from "../../hooks/useAuth";
 
 export default function DetailsStadium() {
     const [comments, setComments] = useState([])
-    const {email} = useContext(UserContext)
+    const { email } = useAuth()
     const { stadiumId } = useParams();
     const navigate = useNavigate();
     const { stadium } = useStadium(stadiumId)
+    const { deleteStadium } = useDeleteStadium()
+
 
     useEffect(() => {
         commentService.getAll(stadiumId)
@@ -24,7 +25,7 @@ export default function DetailsStadium() {
 
         if (!hasConfirm) return;
 
-        await stadiumService.delete(stadiumId)
+        await deleteStadium(stadiumId)
 
         navigate('/stadiums')
     }

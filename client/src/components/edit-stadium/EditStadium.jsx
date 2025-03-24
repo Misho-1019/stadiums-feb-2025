@@ -1,21 +1,16 @@
-import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router"
-import stadiumService from "../../services/stadiumService";
+import { useEditStadium, useStadium } from "../../api/stadiumApi";
 
 export default function EditStadium() {
-    const [stadium, setStadium] = useState({})
     const { stadiumId } = useParams();
     const navigate = useNavigate()
-
-    useEffect(() => {
-        stadiumService.getOne(stadiumId)
-            .then(setStadium)
-    }, [stadiumId])
+    const { stadium } = useStadium(stadiumId)
+    const { edit } = useEditStadium()
 
     const formAction = async (formData) => {
         const stadiumData = Object.fromEntries(formData);
 
-        await stadiumService.edit(stadiumId, stadiumData)
+        await edit(stadiumId, stadiumData)
 
         navigate(`/stadiums/${stadiumId}/details`)
     }

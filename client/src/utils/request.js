@@ -22,7 +22,7 @@ const request = async (method, url, data, options = {}) => {
     if (!responseContentType) {
         return;
     }
-    
+
     const result = await response.json();
 
     return result;
@@ -33,4 +33,5 @@ export default {
     post: request.bind(null, 'POST'),
     put: request.bind(null, 'PUT'),
     delete: request.bind(null, 'DELETE'),
+    baseRequest: request,
 }
